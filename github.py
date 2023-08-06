@@ -20,8 +20,11 @@ options.add_experimental_option('excludeSwitches', ['enable-logging'])
 chromedriver_path = "C:\Drivers\chromedriver_win32\chromedriver"
 # service = Service("C:\Drivers\chromedriver_win32\chromedriver")
 
+# webdriver = webdriver.Chrome(
+#     service=Service(ChromeDriverManager().install()))
+
 webdriver = webdriver.Chrome(
-    service=Service(ChromeDriverManager().install()), options=options)
+    executable_path=chromedriver_path, options=options)
 
 
 webdriver.get("https://github.com/")
@@ -65,11 +68,19 @@ ans = input("enter repository number : ")
 sleep(0.5)
 webdriver.find_element(
     By.XPATH, f"//aside[@aria-label='Account']//li[{ans}]//div[1]//div[1]//a[1]").click()
-webdriver.find_element(
-    By.XPATH, "//summary[@class='Button--primary Button--medium Button flex-1 d-inline-flex']").click()
-link = webdriver.find_element(By.XPATH, "//div[@class='input-group']//input")
-link = link.get_attribute("value")
-print(link)
+try:
+    webdriver.find_element(
+        By.XPATH, "//summary[@class='Button--primary Button--medium Button flex-1 d-inline-flex']").click()
+    link = webdriver.find_element(
+        By.XPATH, "//div[@class='input-group']//input")
+    link = link.get_attribute("value")
+    print(link)
 
-
-webdriver.quit()
+    webdriver.quit()
+except:
+    print("new repository found")
+    link = webdriver.find_element(
+        By.XPATH, "//span[@class='input-group width-full']//input")
+    link = link.get_attribute("value")
+    print(link)
+    webdriver.quit()
