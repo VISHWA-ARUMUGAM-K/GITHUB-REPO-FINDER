@@ -37,9 +37,9 @@ signin = webdriver.find_element(
 sleep(0.5)
 
 Username = webdriver.find_element(By.NAME, "login").send_keys(
-    "vishwakrishoooo@gmail.com"
+    "emailid"
 )
-password = webdriver.find_element(By.NAME, "password").send_keys("vishwA01")
+password = webdriver.find_element(By.NAME, "password").send_keys("password")
 login = webdriver.find_element(By.NAME, "commit").click()
 
 sleep(0.5)
@@ -75,15 +75,11 @@ try:
     ).click()
     link = webdriver.find_element(
         By.XPATH, "//div[@class='input-group']//input")
-    link = link.get_attribute("value")
-    print(link)
-
-    webdriver.quit()
 except:
     print("new repository found")
     link = webdriver.find_element(
         By.XPATH, "//span[@class='input-group width-full']//input"
     )
-    link = link.get_attribute("value")
-    print(link)
-    webdriver.quit()
+link = link.get_attribute("value")
+print(link)
+webdriver.quit()
