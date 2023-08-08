@@ -30,6 +30,7 @@ webdriver.maximize_window()
 
 
 sleep(0.5)
+print("Getting repositories ...")
 signin = webdriver.find_element(
     By.XPATH,
     "//a[@class='HeaderMenu-link HeaderMenu-link--sign-in flex-shrink-0 no-underline d-block d-lg-inline-block border border-lg-0 rounded rounded-lg-0 p-2 p-lg-0']",
@@ -57,7 +58,6 @@ for i, j in enumerate(links_array, start=1):
         name = j.split("/")[-2]
         print(f"github name : {name}")
 
-print("Getting repositories ...")
 
 for i, j in enumerate(links_array, start=1):
     print(i, j.split("/")[-1])
